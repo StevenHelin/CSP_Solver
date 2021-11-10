@@ -3,22 +3,32 @@ package CSP;
 import java.util.ArrayList;
 
 public class ArcCSP {
-    VariableCSP début;
+    VariableCSP debut;
     VariableCSP fin;
     ArrayList<Couple> contraintes;
 
-    public ArcCSP(VariableCSP début, VariableCSP fin, ArrayList<Couple> contraintes) {
-        this.début = début;
+    public ArcCSP(VariableCSP debut, VariableCSP fin, int durete) {
+        this.debut = debut;
         this.fin = fin;
-        this.contraintes = contraintes;
+        this.contraintes = new ArrayList<Couple>();
+        for (int i=0; i<=debut.getDomaine();i++){
+            for (int j=0; j<=fin.getDomaine();j++){
+                contraintes.add(new Couple(i,j));
+            }
+        }
+        for (int i=0; i<debut.getDomaine()*fin.getDomaine()-durete;i++){
+            int random = (int) (Math.random()*(contraintes.size()));
+            contraintes.remove(random);
+        }
     }
 
+
     public VariableCSP getDébut() {
-        return début;
+        return debut;
     }
 
     public void setDébut(VariableCSP début) {
-        this.début = début;
+        this.debut = début;
     }
 
     public VariableCSP getFin() {
