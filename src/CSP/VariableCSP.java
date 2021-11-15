@@ -24,4 +24,12 @@ public class VariableCSP {
     public void setIdv(int idv) {
         this.idv = idv;
     }
+
+    @Override
+    public String toString() {
+        return "VariableCSP{" +
+                "idv=" + idv +
+                ", domaine=" + domaine +
+                '}';
+    }
 }

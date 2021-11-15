@@ -1,5 +1,6 @@
 package CSP;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class CSP {
     ArrayList<VariableCSP> listeVariable;
@@ -17,9 +18,11 @@ public class CSP {
                 listeArc.add(new ArcCSP(listeVariable.get(j),listeVariable.get(k),durete));
             }
         }
-        //todo générer variables
-        //todo générer tous les arcs
-        //todo supprimmer random les arcs
+
+        Random r = new Random();
+        for (int i=0; i<densité * ((listeVariable.size()*(listeVariable.size()-1))/2);i++) {
+            listeArc.remove(r.nextInt(listeArc.size()));
+        }
     }
 
     public ArrayList<VariableCSP> getListeVariable() {
@@ -36,5 +39,13 @@ public class CSP {
 
     public void setListeArc(ArrayList<ArcCSP> listeArc) {
         this.listeArc = listeArc;
+    }
+
+    @Override
+    public String toString() {
+        return "CSP{" +
+                "listeVariable=" + listeVariable +
+                ", listeArc=" + listeArc +
+                '}';
     }
 }

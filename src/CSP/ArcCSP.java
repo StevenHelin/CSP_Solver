@@ -1,6 +1,7 @@
 package CSP;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class ArcCSP {
     VariableCSP debut;
@@ -16,9 +17,9 @@ public class ArcCSP {
                 contraintes.add(new Couple(i,j));
             }
         }
+        Random r = new Random();
         for (int i=0; i<debut.getDomaine()*fin.getDomaine()-durete;i++){
-            int random = (int) (Math.random()*(contraintes.size()));
-            contraintes.remove(random);
+            contraintes.remove(r.nextInt(contraintes.size()));
         }
     }
 
@@ -45,5 +46,14 @@ public class ArcCSP {
 
     public void setContraintes(ArrayList<Couple> contraintes) {
         this.contraintes = contraintes;
+    }
+
+    @Override
+    public String toString() {
+        return "ArcCSP{" +
+                "debut=" + debut +
+                ", fin=" + fin +
+                ", contraintes=" + contraintes +
+                '}';
     }
 }

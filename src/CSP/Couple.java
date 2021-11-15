@@ -24,4 +24,12 @@ public class Couple {
     public void setV2(int v2) {
         this.v2 = v2;
     }
+
+    @Override
+    public String toString() {
+        return "Couple{" +
+                "v1=" + v1 +
+                ", v2=" + v2 +
+                '}';
+    }
 }
