@@ -8,7 +8,7 @@ public class ArcCSP {
     VariableCSP fin;
     ArrayList<Couple> contraintes;
 
-    public ArcCSP(VariableCSP debut, VariableCSP fin, int durete) {
+    public ArcCSP(VariableCSP debut, VariableCSP fin, double durete) {
         this.debut = debut;
         this.fin = fin;
         this.contraintes = new ArrayList<Couple>();
@@ -18,7 +18,7 @@ public class ArcCSP {
             }
         }
         Random r = new Random();
-        for (int i=0; i<debut.getDomaine()*fin.getDomaine()-durete;i++){
+        for (int i=0; i<(debut.getDomaine()*fin.getDomaine())-durete;i++){
             contraintes.remove(r.nextInt(contraintes.size()));
         }
     }

@@ -6,7 +6,7 @@ public class CSP {
     ArrayList<VariableCSP> listeVariable;
     ArrayList<ArcCSP> listeArc;
 
-    public CSP(int n,int durete,int domaine,double densité) {
+    public CSP(int n,double durete,int domaine,double densité) {
         this.listeVariable = new ArrayList<VariableCSP>();
         this.listeArc = new ArrayList<ArcCSP>();
 
