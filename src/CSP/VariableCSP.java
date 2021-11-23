@@ -1,5 +1,7 @@
 package CSP;
 
+import java.util.Objects;
+
 public class VariableCSP {
     int idv;
     int domaine;
@@ -31,5 +33,13 @@ public class VariableCSP {
                 "idv=" + idv +
                 ", domaine=" + domaine +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        VariableCSP that = (VariableCSP) o;
+        return idv == that.idv && domaine == that.domaine;
     }
 }
