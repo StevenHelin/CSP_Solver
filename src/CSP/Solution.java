@@ -6,7 +6,7 @@ public class Solution {
 
     public Solution(VariableCSP v) {
         this.v = v;
-        this.valeur = valeur;
+        this.valeur = -1;
     }
 
     public VariableCSP getV() {
@@ -23,5 +23,13 @@ public class Solution {
 
     public void setValeur(int valeur) {
         this.valeur = valeur;
+    }
+
+    @Override
+    public String toString() {
+        return "Solution{" +
+                "v=" + v +
+                ", valeur=" + valeur +
+                '}';
     }
 }

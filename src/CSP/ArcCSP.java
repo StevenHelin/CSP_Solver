@@ -12,13 +12,13 @@ public class ArcCSP {
         this.debut = debut;
         this.fin = fin;
         this.contraintes = new ArrayList<Couple>();
-        for (int i=0; i<=debut.getDomaine();i++){
-            for (int j=0; j<=fin.getDomaine();j++){
+        for (int i=1; i<=debut.getDomaine();i++){
+            for (int j=1; j<=fin.getDomaine();j++){
                 contraintes.add(new Couple(i,j));
             }
         }
         Random r = new Random();
-        for (int i=0; i<(debut.getDomaine()*fin.getDomaine())-durete;i++){
+        for (int i=0; i<(debut.getDomaine()*fin.getDomaine())-((debut.getDomaine()*fin.getDomaine())*(durete));i++){
             contraintes.remove(r.nextInt(contraintes.size()));
         }
     }
