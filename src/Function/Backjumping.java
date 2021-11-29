@@ -9,6 +9,9 @@ public class Backjumping {
 
     public List<Solution> bj(CSP csp){
         int i=0;
+        List<Ancestor> ancestors= new ArrayList<Ancestor>();
+        ancestors=ancestorInit(csp);
+        i=ancestors.get(i).getFils().getIdv();
         //todo calculer ancetre de la variable
         boolean ok = true;
         ArrayList<Solution> listSolution=new ArrayList<Solution>();
@@ -83,9 +86,16 @@ public class Backjumping {
        for (int i=0;i<csp.getListeVariable().size();i++){
            Ancestor ancestor =new Ancestor(csp.getListeVariable().get(i));
            ancestor.getListvariable().add(csp.getListeVariable().get(i));
+           for(Ancestor anc :ancestors){
+               for (ArcCSP arc:csp.getListeArc()){
+                   if(arc.getDébut()==anc.getFils()){
+                       ancestors.add(new Ancestor(arc.getDébut()));
+                   }
+               }
+           }
            //todo parcourir liste d ancetre
-                //parcourir liste d arc
-                    //ajouter le sommet de debut correspondant a l'ancetre de fin
+                //todo parcourir liste d arc
+                    //todo ajouter le sommet de debut correspondant a l'ancetre de fin
        }
        return ancestors;
     }
