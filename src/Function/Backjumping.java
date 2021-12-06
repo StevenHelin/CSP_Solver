@@ -9,10 +9,9 @@ public class Backjumping {
 
     public List<Solution> bj(CSP csp){
         int i=0;
-        List<Ancestor> ancestors= new ArrayList<Ancestor>();
-        ancestors=ancestorInit(csp);
-        i=ancestors.get(i).getFils().getIdv();
-        //todo calculer ancetre de la variable
+        Ancestor ancestor;
+        ancestor=ancestorInit(csp,csp.getListeVariable().get(0));
+        i=0;
         boolean ok = true;
         ArrayList<Solution> listSolution=new ArrayList<Solution>();
         int x=0;//valeur prise au hasard dans la liste de valeur du domaine
@@ -23,7 +22,7 @@ public class Backjumping {
         }
         while (i>=0 && i<csp.getListeVariable().size()){
             ok=false;
-            while (!ok && dstar!=null){
+            while (!ok && !dstar.get(i).getValeur().isEmpty()){
                 x=dstar.get(i).getValeur().get(0);
                 dstar.get(i).getValeur().remove(0);
                 listSolution.get(i).setValeur(x);
@@ -37,9 +36,17 @@ public class Backjumping {
                     dstar.get(i).getValeur().add(j);
                 }
                 listSolution.get(i).setValeur(-1);
-                i--;
+                if(ancestor.getListvariable().size()!=0){
+                    i=ancestor.getListvariable().get(ancestor.getListvariable().size()-1).getIdv();
+                    ancestor.getListvariable().remove(ancestor.getListvariable().size()-1);
+                }else{
+                    i--;
+                }
             }else{
                 i++;
+                if (i<csp.getListeVariable().size()){
+                    ancestor=ancestorInit(csp,csp.getListeVariable().get(i));
+                }
             }
         }
         if(i==-1){
@@ -81,22 +88,14 @@ public class Backjumping {
         return true;
     }
 
-    public List<Ancestor> ancestorInit(CSP csp){
-       ArrayList<Ancestor> ancestors=new ArrayList<Ancestor>();
-       for (int i=0;i<csp.getListeVariable().size();i++){
-           Ancestor ancestor =new Ancestor(csp.getListeVariable().get(i));
-           ancestor.getListvariable().add(csp.getListeVariable().get(i));
-           for(Ancestor anc :ancestors){
+    public Ancestor ancestorInit(CSP csp, VariableCSP sommet){
+           Ancestor ancestor =new Ancestor(sommet);
                for (ArcCSP arc:csp.getListeArc()){
-                   if(arc.getDébut()==anc.getFils()){
-                       ancestors.add(new Ancestor(arc.getDébut()));
+                   if(arc.getFin()==ancestor.getFils() && !ancestor.getListvariable().contains(arc.getDébut())){
+                       ancestor.getListvariable().add(arc.getDébut());
                    }
                }
-           }
-           //todo parcourir liste d ancetre
-                //todo parcourir liste d arc
-                    //todo ajouter le sommet de debut correspondant a l'ancetre de fin
-       }
-       return ancestors;
+
+       return ancestor;
     }
 }

@@ -11,7 +11,7 @@ public class CSP {
         this.listeVariable = new ArrayList<VariableCSP>();
         this.listeArc = new ArrayList<ArcCSP>();
 
-        for (int i=0;i <= n;i++){
+        for (int i=0;i <=n;i++){
             listeVariable.add(new VariableCSP(i,domaine));
         }
         for (int j=0;j <= n-1; j++){

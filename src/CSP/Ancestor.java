@@ -7,7 +7,7 @@ public class Ancestor {
     VariableCSP fils;
 
     public Ancestor(VariableCSP fils) {
-        this.listvariable = listvariable;
+        this.listvariable = new ArrayList<VariableCSP>();
         this.fils = fils;
     }
 
