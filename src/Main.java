@@ -1,13 +1,15 @@
 import CSP.CSP;
 import Function.Backjumping;
 import Function.BacktrackingChronologique;
+import Function.ForwardChecking;
 
 public class Main {
 
     public static void main(String[] args) {
         BacktrackingChronologique backtrack=new BacktrackingChronologique();
         Backjumping backjump=new Backjumping();
-        CSP csp = new CSP(3,0,3,0.5);
+        ForwardChecking forwardChecking=new ForwardChecking();
+        CSP csp = new CSP(3,1,3,0.5);
         System.out.println(csp.toString());
         System.out.println(backtrack.bt(csp));
         System.out.println(backjump.bj(csp));

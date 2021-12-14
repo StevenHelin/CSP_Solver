@@ -30,4 +30,13 @@ public class Domaine {
     public void setTaille(int taille) {
         this.taille = taille;
     }
+
+    public Domaine deepcopy(){
+        Domaine d=new Domaine(this.taille);
+        for (Integer i:this.getValeur()){
+            d.getValeur().add(i);
+
+        }
+        return d;
+    }
 }
