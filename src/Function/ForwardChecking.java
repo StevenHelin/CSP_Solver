@@ -30,7 +30,7 @@ public class ForwardChecking {
                 listSolution.get(i).setValeur(x);
                 domaineVide=false;
                 for (int k=i+1;k<csp.getListeVariable().size();k++){
-                    REVISE(k,i);
+                    revise(k,i,csp,listSolution,dstar.get(k), dstar.get(i));
                     if(dstar.get(k).getValeur().isEmpty()){
                         domaineVide=true;
                     }
@@ -61,7 +61,25 @@ public class ForwardChecking {
         }
     }
 
-    public void REVISE(int m,int n){
+    public void revise(int m,int n, CSP csp,List<Solution> assignation, Domaine d1, Domaine d2){
+    int i = 0;
+    boolean ok;
+    int save= assignation.get(n).getValeur();
+    while (i<d1.getValeur().size()){
+        ok=true;
+        assignation.get(m).setValeur(d1.getValeur().get(i));
+        for (int b: d2.getValeur()){
+            assignation.get(n).setValeur(b);
+            if (verification(csp,assignation)==false){
+                ok =false;
+            }
+        }
+        if (ok){
+            i++;
+        }else{
+            d2.getValeur().remove(i);
+        }
+    }
 
     }
 
